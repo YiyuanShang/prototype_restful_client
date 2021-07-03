@@ -27,25 +27,25 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	@GetMapping("/user/list")
+	@GetMapping("/users")
 	public List<User> getUserListAll() {
 		LOGGER.debug("entering /user/list");
 		return userService.getUserListAll();
 	}
 
-	@GetMapping("/user/{userId}")
+	@GetMapping("/users/{userId}")
 	public User getUserById(@PathVariable int userId) {
 		LOGGER.debug("entering /user/" + userId);
 		return userService.getUserById(userId);
 	}
 
-	@PostMapping("/user/create")
+	@PostMapping("/users")
 	public User createUser(@RequestBody User user) {
 		LOGGER.debug("entering /user/create");
 		return userService.createUser(user);
 	}
 
-	@PutMapping("/user/update")
+	@PutMapping("/users")
 	public User updateUser(@RequestBody User user) {
 		LOGGER.debug("entering /user/update");
 		return userService.updateUser(user);
@@ -57,7 +57,7 @@ public class UserController {
 		return userService.deleteUserById(userId);
 	}
 
-	@DeleteMapping("/user/delete")
+	@DeleteMapping("/users")
 	public User deleteUser(@RequestBody User user) {
 		LOGGER.debug("entering /user/delete");
 		return userService.deleteUser(user);
