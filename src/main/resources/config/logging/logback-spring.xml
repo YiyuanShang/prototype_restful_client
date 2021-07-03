@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+	<property name="LOG_PATH" value="./logs" />
+	<property name="CONSOLE_LOG_PATTERN"
+		value="[%d{yyyy-MM-dd HH:mm:ss}] -- [%-5p]: [%c] -- %m%n" />
+	<property name="FILE_LOG_PATTERN"
+		value="[%d{yyyy-MM-dd HH:mm:ss}] -- [%-5p]: [%c] -- %m%n" />
+	<property name="LOG_FILE_MAX_FILE_SIZE" value="100MB" />
+	<property name="LOG_FILE_MAX_HISTORY" value="30" />
+	<property name="LOG_FILE_TOTAL_SIZE_CAP" value="20GB" />
+	
+
+	<!-- Console -->
+	<appender name="console"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	<!-- INFO -->
+	<appender name="infoAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/info/info.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>info/info-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<maxFileSize>${LOG_FILE_MAX_FILE_SIZE}</maxFileSize>    
+			<maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+			<totalSizeCap>${LOG_FILE_TOTAL_SIZE_CAP}</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<!-- DEBUG -->
+	<appender name="debugAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/debug/debug.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>debug/debug-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<maxFileSize>${LOG_FILE_MAX_FILE_SIZE}</maxFileSize>    
+			<maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+			<totalSizeCap>${LOG_FILE_TOTAL_SIZE_CAP}</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<!-- WARN -->
+	<appender name="warnAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/warn/warn.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>warn/warn-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<maxFileSize>${LOG_FILE_MAX_FILE_SIZE}</maxFileSize>    
+			<maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+			<totalSizeCap>${LOG_FILE_TOTAL_SIZE_CAP}</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>WARN</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<!-- ERROR -->
+	<appender name="errorAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/error/error.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>error/error-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<maxFileSize>${LOG_FILE_MAX_FILE_SIZE}</maxFileSize>    
+			<maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+			<totalSizeCap>${LOG_FILE_TOTAL_SIZE_CAP}</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	
+
+	<root level="DEBUG">
+		<appender-ref ref="console" />
+		<appender-ref ref="infoAppender" />
+		<appender-ref ref="debugAppender" />
+		<appender-ref ref="warnAppender" />
+		<appender-ref ref="errorAppender" />
+	</root>
+</configuration>  
