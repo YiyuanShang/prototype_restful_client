@@ -1,13 +1,18 @@
 package com.athensoft.prototype.rest.entity;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(name = "prototype_user")
 public class User{
 	
 	@Id
@@ -21,12 +26,17 @@ public class User{
 	
 	private boolean membership;
 	
+	@Column(columnDefinition = "ENUM('ACTIVE', 'INACTIVE', 'DELETED') DEFAULT 'ACTIVE'")
+	@Enumerated(EnumType.STRING)
+	private UserStatus status;
+	
 	public User() {}
 	
 	public User(String name, int age, boolean membership) {
 		this.name = name;
 		this.age = age;
 		this.membership = membership;
+		this.status = UserStatus.ACTIVE;
 	}
 	
 	public int getUserId() {
@@ -55,11 +65,22 @@ public class User{
 	public void setMembership(boolean membership) {
 		this.membership = membership;
 	}
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", name=" + name + ", age=" + age + ", membership=" + membership + "]";
+	
+	public UserStatus getUserStatus() {
+		return status;
 	}
 
+	public void setUserStatus(UserStatus userStatus) {
+		this.status = userStatus;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", name=" + name + ", age=" + age + ", membership=" + membership
+				+ ", userStatus=" + status + "]";
+	}
+
+	
 	
 
 	
