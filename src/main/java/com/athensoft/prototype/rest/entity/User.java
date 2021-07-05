@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "prototype_user")
+@Table(name = "prototype_restful_user")
 public class User{
 	
 	@Id
@@ -24,12 +24,12 @@ public class User{
 	
 	private int age;
 	
-	private boolean membership;
-	
 	@Column(columnDefinition = "ENUM('ACTIVE', 'INACTIVE', 'DELETED') DEFAULT 'ACTIVE'")
 	@Enumerated(EnumType.STRING)
 	private UserStatus status;
 	
+	private boolean membership;
+
 	public User() {}
 	
 	public User(String name, int age, boolean membership) {
@@ -76,10 +76,13 @@ public class User{
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", name=" + name + ", age=" + age + ", membership=" + membership
-				+ ", userStatus=" + status + "]";
+		return "User [userId=" + userId + ", name=" + name + ", age=" + age + ", status=" + status + ", membership="
+				+ membership + "]";
 	}
 
+	
+
+	
 	
 	
 
